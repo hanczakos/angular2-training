@@ -1,6 +1,6 @@
-## Angular2 training with Typescript and Webpack. ##
+# Angular2 training with Typescript and Webpack.
 
-# Installation
+## Installation
 
 1. `npm install`
 2. `npm install -g typings`
