@@ -1,0 +1,22 @@
+<div class="container spacing">
+    <h2>Detailed information about {{user.name || 'user'}}</h2>
+
+    <div class="form-group">
+        <p><b>Id:</b> {{user.id}}</p>
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input id="email" type="email" class="form-control" placeholder="E-mail"
+               [(ngModel)]="user.email">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" class="form-control" placeholder="Name"
+               [ngModel]="user.name" (ngModelChange)="parseName($event)">
+    </div>
+
+    <p [ngStyle]="setNameLengthStyles()">The user's name contains {{wordLength(user.name)}} words.</p>
+
+</div>
