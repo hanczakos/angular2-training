@@ -8,7 +8,7 @@
     <div class="form-group">
         <label for="email">E-mail:</label>
         <input id="email" type="email" class="form-control" placeholder="E-mail"
-               [(ngModel)]="user.email">
+               [(ngModel)]="user.email" (keyup)="keyHander($event)">
     </div>
 
     <div class="form-group">

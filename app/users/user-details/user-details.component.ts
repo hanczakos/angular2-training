@@ -33,4 +33,10 @@ export class UserDetailsComponent {
         };
     }
 
+    keyHander(event) {
+        if (event.keyCode===13) {
+            alert("The entered email: " + event.target.value);
+        }
+    }
+
 }
