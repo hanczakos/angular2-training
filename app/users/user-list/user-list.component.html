@@ -1,0 +1,25 @@
+<div class="grey">
+    <div class="container spacing">
+        <h2>Our users</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="edit(user)">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<user-details [user]="activeUser" *ngIf="activeUser"></user-details>

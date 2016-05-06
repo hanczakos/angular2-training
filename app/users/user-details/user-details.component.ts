@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-
-export class User {
-    id: number;
-    name: string;
-    email: string;
-}
+import { Component, Input } from '@angular/core';
+import { User } from '../shared/user';
 
 @Component({
     selector: 'user-details',
@@ -12,11 +7,7 @@ export class User {
 })
 
 export class UserDetailsComponent {
-    user: User = {
-        id: 1,
-        name: 'John Doe',
-        email: 'john@doemail.com'
-    };
+    @Input() user: User;
 
     parseName(input) {
         this.user.name = input.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
