@@ -33,7 +33,7 @@ export class UserDetailsComponent {
         };
     }
 
-    keyHander(event) {
+    keyHandler(event) {
         if (event.keyCode===13) {
             alert("The entered email: " + event.target.value);
         }
