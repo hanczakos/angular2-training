@@ -1,14 +1,12 @@
 <div class="grey">
     <div class="container spacing">
         <h2>Our users</h2>
-        <p *ngFor="let message of messages">{{message}}</p>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Level</th>
                     <th>Edit</th>
                 </tr>
             </thead>
@@ -17,17 +15,10 @@
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
-                    <td>
-                        <div class="input-group">
-                            <span class="input-group-btn"><button type="button" class="btn btn-default" (click)="user.level=user.level-1">-</button></span>
-                            <span class="form-control">{{user.level}}</span>
-                            <span class="input-group-btn"><button type="button" class="btn btn-default" (click)="user.level=user.level+1">+</button></span>
-                        </div>
-                    </td>
                     <td><button type="button" class="btn btn-primary" (click)="edit(user)">Edit</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<user-details [user]="activeUser" [level]="activeUser.level" (onLevelRequest)="onLevelRequest($event)" *ngIf="activeUser"></user-details>
+<user-details [user]="activeUser" *ngIf="activeUser"></user-details>

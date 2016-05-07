@@ -12,27 +12,18 @@ export class UserListComponent {
     users: User[] = [{
         id: 1,
         name: 'John Doe',
-        email: 'john@doemail.com',
-        level: 4
+        email: 'john@doemail.com'
     }, {
         id: 2,
         name: 'Jane Doe',
-        email: 'jane@doemail.com',
-        level: 5
+        email: 'jane@doemail.com'
     }, {
         id: 3,
         name: 'Jack Doe',
-        email: 'jack@doemail.com',
-        level: 2
+        email: 'jack@doemail.com'
     }];
 
     activeUser:User;
-
-    messages: string[] = [];
-
-    onLevelRequest(request) {
-        this.messages.push(request.userName + ' has requested a change to level ' + request.level);
-    }
 
     edit(user) {
         this.activeUser = user;
