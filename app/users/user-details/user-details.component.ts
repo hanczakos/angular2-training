@@ -1,4 +1,6 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, RouteParams } from '@angular/router-deprecated';
+
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 
@@ -7,19 +9,27 @@ import { UserService } from '../shared/user.service';
     templateUrl: 'users/user-details/user-details.component.html'
 })
 
-export class UserDetailsComponent implements OnChanges {
+export class UserDetailsComponent implements OnInit {
 
-    @Input() userId: number;
     user: User;
 
-    constructor(private userService: UserService) { }
+    constructor(
+        private userService: UserService,
+        private router: Router,
+        private routeParams: RouteParams
+    ) { }
 
-    ngOnChanges() {
-        this.user = this.userService.getUser(this.userId);
+    ngOnInit() {
+        this.user = this.userService.getUser(+this.routeParams.params['id']);
     }
 
     saveUser() {
         this.userService.updateUser(this.user);
+        this.router.navigate(['UserList']);
+    }
+
+    cancel() {
+        this.router.navigate(['UserList']);
     }
 
     parseName(input) {

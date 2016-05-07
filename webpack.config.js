@@ -32,6 +32,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: 'app/'
+    contentBase: 'app/',
+    historyApiFallback: true
   }
 };
