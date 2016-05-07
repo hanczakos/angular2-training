@@ -26,10 +26,22 @@ export class UserService {
         return new User(this.users.filter(user => user.id==id)[0]);
     }
 
+    createUser(newUser: User) {
+        this.users.unshift(newUser);
+    }
+
     updateUser(updatedUser: User) {
         this.users.forEach((user, index) => {
             if (user.id===updatedUser.id) {
                 this.users[index] = new User(updatedUser);
+            }
+        });
+    }
+
+    deleteUser(id: number) {
+        this.users.forEach((user, index) => {
+            if (user.id===id) {
+                this.users.splice(index,1);
             }
         });
     }

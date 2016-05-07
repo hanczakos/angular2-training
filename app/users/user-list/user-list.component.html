@@ -13,8 +13,14 @@
                 <td>{{user.id}}</td>
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
-                <td><a class="btn btn-primary" [routerLink]="['UserDetails', { id: user.id }]">Edit</a></td>
+                <td>
+                    <a class="btn btn-primary" [routerLink]="['UserDetails', { id: user.id }]">Edit</a>
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
+    <div>
+        <a class="btn btn-primary" [routerLink]="['UserDetails', { id: null }]">New user</a>
+    </div>
 </div>

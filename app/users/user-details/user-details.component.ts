@@ -12,6 +12,7 @@ import { UserService } from '../shared/user.service';
 export class UserDetailsComponent implements OnInit {
 
     user: User;
+    newUser: boolean;
 
     constructor(
         private userService: UserService,
@@ -20,11 +21,21 @@ export class UserDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.user = this.userService.getUser(+this.routeParams.params['id']);
+        if (this.routeParams.params['id']!==null) {
+            this.newUser = false;
+            this.user = this.userService.getUser(+this.routeParams.params['id']);
+        } else {
+            this.newUser = true;
+            this.user = new User();
+        }
     }
 
     saveUser() {
-        this.userService.updateUser(this.user);
+        if (this.newUser) {
+            this.userService.createUser(this.user);
+        } else {
+            this.userService.updateUser(this.user);
+        }
         this.router.navigate(['UserList']);
     }
 
