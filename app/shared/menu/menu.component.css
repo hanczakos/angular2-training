@@ -1,0 +1,11 @@
+nav {
+    background: #337ab7;
+}
+
+nav a {
+    color: #fff;
+}
+
+.nav > li > a:hover, .nav > li > a:focus, .nav > li > a.active {
+    background: #5BC0DE;
+}
