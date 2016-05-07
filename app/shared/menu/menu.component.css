@@ -6,6 +6,6 @@ nav a {
     color: #fff;
 }
 
-.nav > li > a:hover, .nav > li > a:focus, .nav > li > a.active {
+.nav > li > a:hover, .nav > li > a:focus, .nav > li > a.active, .router-link-active {
     background: #5BC0DE;
 }

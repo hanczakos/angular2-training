@@ -2,8 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { UserService } from './users/shared/user.service';
-import { UserListComponent } from './users/user-list/user-list.component';
-import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { UsersComponent } from './users/base/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
@@ -24,16 +23,12 @@ import { MenuComponent } from './shared/menu/menu.component';
         component: DashboardComponent,
         useAsDefault: true
     }, {
-        name: 'UserList',
-        path: '/users',
-        component: UserListComponent
-    }, {
-        name: 'UserDetails',
-        path: '/users/:id',
-        component: UserDetailsComponent
+        name: 'Users',
+        path: '/users/...',
+        component: UsersComponent
     }, {
         path: '/*404',
-        redirectTo: ['/UserList']
+        redirectTo: ['/Dashboard']
     }
 ])
 
