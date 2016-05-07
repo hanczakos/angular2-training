@@ -23,7 +23,7 @@
                [(ngModel)]="level">
     </div>
 
-    <p *ngIf="level!=user.level">The user wishes to be changed to level {{level}}.</p>
+    <p *ngIf="level!=user.level">The user wishes to be changed to level {{level}}. <button type="button" class="btn btn-primary" (click)="requestLevelChange()">Request change</button> </p>
     <p [ngStyle]="setNameLengthStyles()">The user's name contains {{wordLength(user.name)}} words.</p>
 
 </div>

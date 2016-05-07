@@ -1,7 +1,7 @@
 <div class="grey">
     <div class="container spacing">
         <h2>Our users</h2>
-
+        <p *ngFor="let message of messages">{{message}}</p>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -30,4 +30,4 @@
         </table>
     </div>
 </div>
-<user-details [user]="activeUser" [level]="activeUser.level" *ngIf="activeUser"></user-details>
+<user-details [user]="activeUser" [level]="activeUser.level" (onLevelRequest)="onLevelRequest($event)" *ngIf="activeUser"></user-details>

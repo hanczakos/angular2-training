@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../shared/user';
 
 @Component({
@@ -10,6 +10,11 @@ export class UserDetailsComponent {
 
     @Input() user: User;
     @Input() level: number;
+    @Output() onLevelRequest = new EventEmitter<Object>();  //TODO Object could be specified with a class definition
+
+    requestLevelChange() {
+        this.onLevelRequest.emit({userName: this.user.name, level: this.level});
+    }
 
     parseName(input) {
         this.user.name = input.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');

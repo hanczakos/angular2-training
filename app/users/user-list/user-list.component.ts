@@ -28,6 +28,12 @@ export class UserListComponent {
 
     activeUser:User;
 
+    messages: string[] = [];
+
+    onLevelRequest(request) {
+        this.messages.push(request.userName + ' has requested a change to level ' + request.level);
+    }
+
     edit(user) {
         this.activeUser = user;
     }
