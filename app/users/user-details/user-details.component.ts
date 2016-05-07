@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 
@@ -7,15 +7,19 @@ import { UserService } from '../shared/user.service';
     templateUrl: 'users/user-details/user-details.component.html'
 })
 
-export class UserDetailsComponent implements OnInit{
+export class UserDetailsComponent implements OnChanges {
 
     @Input() userId: number;
     user: User;
 
     constructor(private userService: UserService) { }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.user = this.userService.getUser(this.userId);
+    }
+
+    saveUser() {
+        this.userService.updateUser(this.user);
     }
 
     parseName(input) {

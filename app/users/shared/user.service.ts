@@ -22,7 +22,16 @@ export class UserService {
         return this.users;
     }
 
-    getUser(id) {
-        return this.users.filter(user => user.id==id)[0];
+    getUser(id: number) {
+        return new User(this.users.filter(user => user.id==id)[0]);
     }
+
+    updateUser(updatedUser: User) {
+        this.users.forEach((user, index) => {
+            if (user.id===updatedUser.id) {
+                this.users[index] = new User(updatedUser);
+            }
+        });
+    }
+
 }
