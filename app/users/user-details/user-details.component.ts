@@ -1,15 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../shared/user';
+import { UserService } from '../shared/user.service';
 
 @Component({
     selector: 'user-details',
     templateUrl: 'users/user-details/user-details.component.html'
 })
 
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit{
 
-    @Input() user: User;
-    @Input() level: number;
+    @Input() userId: number;
+    user: User;
+
+    constructor(private userService: UserService) { }
+
+    ngOnInit() {
+        this.user = this.userService.getUser(this.userId);
+    }
 
     parseName(input) {
         this.user.name = input.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');

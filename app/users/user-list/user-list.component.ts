@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
 import { UserDetailsComponent } from '../user-details/user-details.component';
+import { UserService } from '../shared/user.service';
 
 @Component({
     selector: 'user-list',
@@ -8,24 +9,19 @@ import { UserDetailsComponent } from '../user-details/user-details.component';
     directives: [UserDetailsComponent]
 })
 
-export class UserListComponent {
-    users: User[] = [{
-        id: 1,
-        name: 'John Doe',
-        email: 'john@doemail.com'
-    }, {
-        id: 2,
-        name: 'Jane Doe',
-        email: 'jane@doemail.com'
-    }, {
-        id: 3,
-        name: 'Jack Doe',
-        email: 'jack@doemail.com'
-    }];
+export class UserListComponent implements OnInit {
 
-    activeUser:User;
+    users: User[];
+    activeUserId:number;
+
+    constructor(private userService: UserService) { }
+
+    ngOnInit() {
+        this.users = this.userService.getUsers();
+    }
 
     edit(user) {
-        this.activeUser = user;
+        this.activeUserId = user.id;
     }
+
 }
