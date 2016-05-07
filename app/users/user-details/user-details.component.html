@@ -17,6 +17,13 @@
                [ngModel]="user.name" (ngModelChange)="parseName($event)">
     </div>
 
+    <div class="form-group">
+        <label for="level">Level:</label>
+        <input id="level" type="text" class="form-control" placeholder="Level"
+               [(ngModel)]="level">
+    </div>
+
+    <p *ngIf="level!=user.level">The user wishes to be changed to level {{level}}.</p>
     <p [ngStyle]="setNameLengthStyles()">The user's name contains {{wordLength(user.name)}} words.</p>
 
 </div>

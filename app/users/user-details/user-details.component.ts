@@ -7,7 +7,24 @@ import { User } from '../shared/user';
 })
 
 export class UserDetailsComponent {
+    //_user: User;
+
     @Input() user: User;
+
+    @Input() level: number;
+
+   /* @Input() set user(user: User) {
+        this._user = user;
+        this._user.name = this._user.name.toUpperCase();
+
+        if (user.name==='') {
+            this._user.name = 'Unnamed user';
+        }
+    }
+
+    get user() {
+        return this._user;
+    }*/
 
     parseName(input) {
         this.user.name = input.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');

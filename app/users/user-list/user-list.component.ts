@@ -12,15 +12,18 @@ export class UserListComponent {
     users: User[] = [{
         id: 1,
         name: 'John Doe',
-        email: 'john@doemail.com'
+        email: 'john@doemail.com',
+        level: 4
     }, {
         id: 2,
         name: 'Jane Doe',
-        email: 'jane@doemail.com'
+        email: 'jane@doemail.com',
+        level: 5
     }, {
         id: 3,
         name: 'Jack Doe',
-        email: 'jack@doemail.com'
+        email: 'jack@doemail.com',
+        level: 2
     }];
 
     activeUser:User;
