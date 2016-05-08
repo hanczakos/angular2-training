@@ -17,12 +17,16 @@ import { HighlightDirective } from '../../shared/highlight/highlight.directive';
 export class UserListComponent implements OnInit {
 
     users: User[];
+    errorMessage: string;
     lang: string = 'en';
 
     constructor(private userService: UserService) { }
 
     ngOnInit() {
-        this.users = this.userService.getUsers();
+        this.userService.getUsers().subscribe(
+            users => this.users = users,
+            error =>  this.errorMessage = error
+        );
     }
 
     deleteUser(user) {
