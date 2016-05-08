@@ -13,7 +13,8 @@ import { NameOrderPipe } from '../shared/name-order.pipe';
 
 export class UserDetailsComponent implements OnInit {
 
-    user: User;
+    user: User = new User();
+    initializedUser: boolean = false;
     newUser: boolean;
 
     constructor(
@@ -25,10 +26,15 @@ export class UserDetailsComponent implements OnInit {
     ngOnInit() {
         if (this.routeParams.params['id']!==null) {
             this.newUser = false;
-            this.user = this.userService.getUser(+this.routeParams.params['id']);
+            this.userService.getUser(+this.routeParams.params['id']).subscribe(
+                user => {
+                    this.user = user;
+                    this.initializedUser = true;
+                }
+            );
         } else {
             this.newUser = true;
-            this.user = new User();
+            this.initializedUser = true;
         }
     }
 

@@ -31,7 +31,11 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    private extractData(res: Response) {
+    getUser(id: number): Observable<User> {
+        return this.getUsers().map( data => data.filter(user => user.id==id)[0] );
+    }
+
+    private extractData(res: Response): User[] {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
@@ -48,9 +52,7 @@ export class UserService {
         return Observable.throw(errMsg);
     }
 
-    getUser(id: number) {
-        return new User(this.users.filter(user => user.id==id)[0]);
-    }
+
 
     createUser(newUser: User) {
         this.users.unshift(newUser);
