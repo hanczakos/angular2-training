@@ -7,33 +7,19 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
-    private users: User[] = [{
-        id: 1,
-        name: 'John Doe',
-        email: 'john@doemail.com'
-    }, {
-        id: 2,
-        name: 'Jane Doe',
-        email: 'jane@doemail.com'
-    }, {
-        id: 3,
-        name: 'Jack Doe',
-        email: 'jack@doemail.com'
-    }];
-
     private usersUrl = 'http://localhost:3000/users';
 
     constructor (private http: Http) {}
 
     getUsers():Observable<User[]> {
         return this.http.get(this.usersUrl)
-            .map(data => this.extractData<User[]>(data))
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
     getUser(id: number): Observable<User> {
         return this.http.get(this.usersUrl+'/'+id)
-            .map(data => this.extractData<User>(data))
+            .map(this.extractData)
             .catch(this.handleError);
     }
 
@@ -47,8 +33,23 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    updateUser(updatedUser: User): Observable<User>  {
+        let body = JSON.stringify(updatedUser);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
-    private extractData<T>(res: Response): T {
+        return this.http.put(this.usersUrl+'/'+updatedUser.id, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    deleteUser(id: number) {
+        return this.http.delete(this.usersUrl+'/'+id)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
@@ -63,22 +64,6 @@ export class UserService {
         }
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
-    }
-
-    updateUser(updatedUser: User) {
-        this.users.forEach((user, index) => {
-            if (user.id===updatedUser.id) {
-                this.users[index] = new User(updatedUser);
-            }
-        });
-    }
-
-    deleteUser(id: number) {
-        this.users.forEach((user, index) => {
-            if (user.id===id) {
-                this.users.splice(index,1);
-            }
-        });
     }
 
 }

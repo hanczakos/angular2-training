@@ -44,8 +44,9 @@ export class UserDetailsComponent implements OnInit {
                 response => this.router.navigate(['UserList'])
             );
         } else {
-            this.userService.updateUser(this.user);
-            this.router.navigate(['UserList']);
+            this.userService.updateUser(this.user).subscribe(
+                response => this.router.navigate(['UserList'])
+            );
         }
     }
 

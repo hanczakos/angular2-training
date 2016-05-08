@@ -30,7 +30,12 @@ export class UserListComponent implements OnInit {
     }
 
     deleteUser(user) {
-        this.userService.deleteUser(user.id);
+        this.userService.deleteUser(user.id).subscribe(
+            response => {
+                var index = this.users.map(user => user.id).indexOf(response.id);
+                this.users.splice(index,1);
+            }
+        );
     }
 
     setLang(lang) {
