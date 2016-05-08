@@ -1,0 +1,23 @@
+{
+  "sitedata": {
+    "webisite": "www.fake.site.com",
+    "email": "info@fakesite.com"
+  },
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@doemail.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "jane@doemail.com"
+    },
+    {
+      "id": 3,
+      "name": "Jack Doe",
+      "email": "jack@doemail.com"
+    }
+  ]
+}
