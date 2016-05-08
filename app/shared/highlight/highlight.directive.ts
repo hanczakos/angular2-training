@@ -9,13 +9,16 @@ import { Directive, ElementRef, Input } from '@angular/core';
 })
 export class HighlightDirective {
 
+    private _defaultColor = '#5BC0DE';
+    @Input('hoverHighlight') highlightColor: string;
+
     private el:HTMLElement;
 
     constructor(el: ElementRef) {
         this.el = el.nativeElement;
     }
 
-    onMouseEnter() { this.highlight("yellow"); }
+    onMouseEnter() { this.highlight(this.highlightColor || this._defaultColor); }
     onMouseLeave() { this.highlight(null); }
 
     private highlight(color: string) {
