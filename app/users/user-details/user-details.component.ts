@@ -40,11 +40,13 @@ export class UserDetailsComponent implements OnInit {
 
     saveUser() {
         if (this.newUser) {
-            this.userService.createUser(this.user);
+            this.userService.createUser(this.user).subscribe(
+                response => this.router.navigate(['UserList'])
+            );
         } else {
             this.userService.updateUser(this.user);
+            this.router.navigate(['UserList']);
         }
-        this.router.navigate(['UserList']);
     }
 
     cancel() {

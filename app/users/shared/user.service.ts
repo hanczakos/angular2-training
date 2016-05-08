@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 import { User } from './user';
@@ -27,15 +27,28 @@ export class UserService {
 
     getUsers():Observable<User[]> {
         return this.http.get(this.usersUrl)
-            .map(this.extractData)
+            .map(data => this.extractData<User[]>(data))
             .catch(this.handleError);
     }
 
     getUser(id: number): Observable<User> {
-        return this.getUsers().map( data => data.filter(user => user.id==id)[0] );
+        return this.http.get(this.usersUrl+'/'+id)
+            .map(data => this.extractData<User>(data))
+            .catch(this.handleError);
     }
 
-    private extractData(res: Response): User[] {
+    createUser(newUser: User): Observable<User>  {
+        let body = JSON.stringify(newUser);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.usersUrl, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+
+    private extractData<T>(res: Response): T {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
         }
@@ -50,12 +63,6 @@ export class UserService {
         }
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
-    }
-
-
-
-    createUser(newUser: User) {
-        this.users.unshift(newUser);
     }
 
     updateUser(updatedUser: User) {
