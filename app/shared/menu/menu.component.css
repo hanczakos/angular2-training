@@ -9,3 +9,7 @@ nav a {
 .nav > li > a:hover, .nav > li > a:focus, .nav > li > a.active, .router-link-active {
     background: #5BC0DE;
 }
+
+.menu-active {
+    font-weight: 700;
+}

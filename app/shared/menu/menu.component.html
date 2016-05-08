@@ -1,8 +1,8 @@
 <nav>
     <div class="container">
         <ul class="nav navbar-nav">
-            <li><a [routerLink]="['Dashboard']">About us</a></li>
-            <li><a [routerLink]="['Users']">Users</a></li>
+            <li><a [routerLink]="['Dashboard']" [ngClass]="{'menu-active': currentRouteBase==''}">About us</a></li>
+            <li><a [routerLink]="['Users']" [ngClass]="{'menu-active': currentRouteBase=='users'}">Users</a></li>
         </ul>
     </div>
 </nav>

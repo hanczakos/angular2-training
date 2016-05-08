@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 @Component({
     selector: 'training-menu',
@@ -8,4 +8,12 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
     directives: [ ROUTER_DIRECTIVES ]
 })
 
-export class MenuComponent {}
+export class MenuComponent {
+
+    currentRouteBase: string;
+
+    constructor(private router: Router) {
+        router.subscribe((val) => this.currentRouteBase = val.split('/')[0]);
+    }
+
+}
