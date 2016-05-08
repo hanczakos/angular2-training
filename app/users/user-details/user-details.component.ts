@@ -3,10 +3,12 @@ import { Router, RouteParams } from '@angular/router-deprecated';
 
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
+import { NameOrderPipe } from '../shared/name-order.pipe';
 
 @Component({
     selector: 'user-details',
-    templateUrl: 'users/user-details/user-details.component.html'
+    templateUrl: 'users/user-details/user-details.component.html',
+    pipes: [ NameOrderPipe ]
 })
 
 export class UserDetailsComponent implements OnInit {

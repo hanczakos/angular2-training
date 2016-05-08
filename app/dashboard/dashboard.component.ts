@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
     templateUrl: 'dashboard/dashboard.component.html'
 })
 
-export class DashboardComponent {}
+export class DashboardComponent {
+    today: Date = new Date();
+}
