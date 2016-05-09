@@ -5,6 +5,7 @@ import { Control, ControlGroup, Validators } from '@angular/common';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 import { NameOrderPipe } from '../shared/name-order.pipe';
+import { ValidationService } from '../../shared/validation/validation.service';
 
 @Component({
     selector: 'user-details',
@@ -19,7 +20,7 @@ export class UserDetailsComponent implements OnInit {
 
     id: number;
     name: Control = new Control('');
-    email: Control = new Control('',Validators.required);
+    email: Control = new Control('', Validators.compose([Validators.required, ValidationService.emailValidator]));
     form: ControlGroup = new ControlGroup({
         "name": this.name,
         "email": this.email

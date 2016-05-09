@@ -15,7 +15,7 @@
             <div class="alert alert-danger" *ngIf="email.errors.required">
                 Email is required
             </div>
-            <div class="alert alert-danger" *ngIf="email.errors.pattern">
+            <div class="alert alert-danger" *ngIf="email.errors.invalidEmailAddress">
                 Email is in wrong format
             </div>
         </div>
