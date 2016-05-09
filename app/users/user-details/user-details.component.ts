@@ -6,11 +6,13 @@ import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 import { NameOrderPipe } from '../shared/name-order.pipe';
 import { ValidationService } from '../../shared/validation/validation.service';
+import { ControlMessagesComponent } from '../../shared/validation/control-messages.component';
 
 @Component({
     selector: 'user-details',
     templateUrl: 'users/user-details/user-details.component.html',
-    pipes: [ NameOrderPipe ]
+    pipes: [ NameOrderPipe ],
+    directives: [ ControlMessagesComponent ]
 })
 
 export class UserDetailsComponent implements OnInit {

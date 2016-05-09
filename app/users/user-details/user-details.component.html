@@ -11,14 +11,7 @@
             <label for="email">E-mail:</label>
             <input id="email" type="email" class="form-control" placeholder="E-mail" ngControl="email">
         </div>
-        <div *ngIf="email.dirty && !email.valid">
-            <div class="alert alert-danger" *ngIf="email.errors.required">
-                Email is required
-            </div>
-            <div class="alert alert-danger" *ngIf="email.errors.invalidEmailAddress">
-                Email is in wrong format
-            </div>
-        </div>
+        <control-messages control="email"></control-messages>
 
         <div class="form-group">
             <label for="name">Name:</label>
