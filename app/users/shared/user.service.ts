@@ -11,8 +11,12 @@ export class UserService {
 
     constructor (private backend: BackendService) {}
 
-    getUsers():Observable<User[]> {
-        return this.backend.request<User[],void>('get',this.usersUrl);
+    getUsers(queryString?: string):Observable<User[]> {
+        let url = this.usersUrl;
+        if (queryString) {
+            url+='?q='+queryString;
+        }
+        return this.backend.request<User[],void>('get',url);
     }
 
     getUser(id: number): Observable<User> {

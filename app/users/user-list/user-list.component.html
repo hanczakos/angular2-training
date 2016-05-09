@@ -1,4 +1,9 @@
 <div class="container spacing">
+    <div class="form-group">
+        <label for="search-user">Search for a user</label>
+        <input id="search-user" type="text" class="form-control" placeholder="Start typing to search..."
+               [(ngModel)]="searchInput" (keyup)="searchUser(searchInput)">
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
