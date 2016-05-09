@@ -21,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
     initializedUser: boolean = false;
 
     id: number;
-    name: Control = new Control('');
+    name: Control = new Control('', Validators.compose([Validators.required, ValidationService.fullNameValidator]));
     email: Control = new Control('', Validators.compose([Validators.required, ValidationService.emailValidator]));
     form: ControlGroup = new ControlGroup({
         "name": this.name,

@@ -17,6 +17,7 @@
             <label for="name">Name:</label>
             <input id="name" type="text" class="form-control" placeholder="Name" ngControl="name">
         </div>
+        <control-messages control="name"></control-messages>
 
         <p [ngStyle]="setNameLengthStyles(name.value)">The user's name contains {{wordLength(name.value)}} words.</p>
 
