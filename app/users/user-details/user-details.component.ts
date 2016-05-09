@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouteParams } from '@angular/router-deprecated';
+import { Control, ControlGroup, Validators } from '@angular/common';
 
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
@@ -13,9 +14,16 @@ import { NameOrderPipe } from '../shared/name-order.pipe';
 
 export class UserDetailsComponent implements OnInit {
 
-    user: User = new User();
-    initializedUser: boolean = false;
     newUser: boolean;
+    initializedUser: boolean = false;
+
+    id: number;
+    name: Control = new Control('');
+    email: Control = new Control('',Validators.required);
+    form: ControlGroup = new ControlGroup({
+        "name": this.name,
+        "email": this.email
+    });
 
     constructor(
         private userService: UserService,
@@ -23,12 +31,16 @@ export class UserDetailsComponent implements OnInit {
         private routeParams: RouteParams
     ) { }
 
+
     ngOnInit() {
+
         if (this.routeParams.params['id']!==null) {
             this.newUser = false;
             this.userService.getUser(+this.routeParams.params['id']).subscribe(
                 user => {
-                    this.user = user;
+                    this.id = user.id;
+                    this.name.updateValue(user.name);
+                    this.email.updateValue(user.email);
                     this.initializedUser = true;
                 }
             );
@@ -36,17 +48,32 @@ export class UserDetailsComponent implements OnInit {
             this.newUser = true;
             this.initializedUser = true;
         }
+
+        this.form.valueChanges
+            .map((value) => {
+                value.name = value.name.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+                return value;
+            })
+            .subscribe((value) => {
+                this.name.updateValue(value.name, {emitEvent: false});
+            })
+        ;
+
     }
 
     saveUser() {
-        if (this.newUser) {
-            this.userService.createUser(this.user).subscribe(
-                response => this.router.navigate(['UserList'])
-            );
-        } else {
-            this.userService.updateUser(this.user).subscribe(
-                response => this.router.navigate(['UserList'])
-            );
+        if (this.form.valid) {
+            if (this.newUser) {
+                this.userService.createUser(this.form.value).subscribe(
+                    response => this.router.navigate(['UserList'])
+                );
+            } else {
+                this.userService.updateUser(
+                    Object.assign(this.form.value,{ id: this.id })
+                ).subscribe(
+                    response => this.router.navigate(['UserList'])
+                );
+            }
         }
     }
 
@@ -54,18 +81,14 @@ export class UserDetailsComponent implements OnInit {
         this.router.navigate(['UserList']);
     }
 
-    parseName(input) {
-        this.user.name = input.split(' ').map( word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
-    }
-
     wordLength(input) {
         return input.split(' ').length;
     }
 
-    setNameLengthStyles() {
+    setNameLengthStyles(name) {
         return {
-            'color':  this.wordLength(this.user.name)>1 ? 'green' : 'red',
-            'font-weight':  this.wordLength(this.user.name)>2 ? 700 : 400
+            'color':  this.wordLength(name)>1 ? 'green' : 'red',
+            'font-weight':  this.wordLength(name)>2 ? 700 : 400
         };
     }
 
