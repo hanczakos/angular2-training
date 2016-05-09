@@ -72,6 +72,7 @@ export class UserDetailsComponent implements OnInit {
     keyHandler(event) {
         if (event.keyCode===13) {
             alert("The entered email: " + event.target.value);
+            event.stopPropagation();
         }
     }
 

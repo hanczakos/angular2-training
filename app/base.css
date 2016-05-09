@@ -5,3 +5,7 @@
 .grey {
     background: #eee;
 }
+
+input.ng-invalid.ng-touched{
+    border: solid 2px red!important;
+}
