@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { HTTP_PROVIDERS }    from '@angular/http';
 import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
+import { BackendService } from './shared/backend/backend.service';
 import { UserService } from './users/shared/user.service';
 import { UsersComponent } from './users/base/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -13,7 +14,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     templateUrl: 'app.component.html',
     styleUrls: ['base.css'],
     directives: [ ROUTER_DIRECTIVES, HeaderComponent, MenuComponent ],
-    providers: [ ROUTER_PROVIDERS, HTTP_PROVIDERS, UserService ],
+    providers: [ ROUTER_PROVIDERS, HTTP_PROVIDERS, BackendService, UserService ],
     encapsulation: ViewEncapsulation.None
 })
 
