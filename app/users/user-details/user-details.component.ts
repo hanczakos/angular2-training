@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouteParams } from '@angular/router-deprecated';
 import { Control, ControlGroup, Validators } from '@angular/common';
 
+import { TranslateService } from 'ng2-translate/ng2-translate';
+
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 import { NameOrderPipe } from '../shared/name-order.pipe';
@@ -31,7 +33,8 @@ export class UserDetailsComponent implements OnInit {
     constructor(
         private userService: UserService,
         private router: Router,
-        private routeParams: RouteParams
+        private routeParams: RouteParams,
+        private translate: TranslateService
     ) { }
 
 
@@ -96,9 +99,10 @@ export class UserDetailsComponent implements OnInit {
     }
 
     keyHandler(event) {
+        event.stopPropagation();
         if (event.keyCode===13) {
-            alert("The entered email: " + event.target.value);
-            event.stopPropagation();
+            alert(this.translate.get('users.details.enteredEmail', {email: event.target.value}).value);
+            return false;
         }
     }
 

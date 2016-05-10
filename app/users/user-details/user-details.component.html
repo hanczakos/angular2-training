@@ -9,7 +9,8 @@
 
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input id="email" type="email" class="form-control" placeholder="E-mail" ngControl="email">
+            <input id="email" type="email" class="form-control" placeholder="E-mail"
+                   ngControl="email" (keypress)="keyHandler($event)">
         </div>
         <control-messages control="email"></control-messages>
 

@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { TranslatePipe } from 'ng2-translate/ng2-translate';
 
 @Component({
     selector: 'dashboard',
-    templateUrl: 'dashboard/dashboard.component.html'
+    templateUrl: 'dashboard/dashboard.component.html',
+    pipes: [ TranslatePipe ]
 })
 
 export class DashboardComponent implements OnInit {
     today: Date = new Date();
+    counter: number = 0;
 
     ngOnInit() {
 
-        let myObservable = new Observable(observer => {
+        let myObservable = new Observable<number>(observer => {
             let count = 0;
             let interval = setInterval(() => {
                 observer.next(count++);
@@ -25,7 +28,7 @@ export class DashboardComponent implements OnInit {
         });
 
         let subscriber = myObservable.subscribe(
-            val => console.log(val),
+            val => this.counter = val,
             err => console.log(err),
             () => console.log('done')
         );

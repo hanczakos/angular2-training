@@ -1,0 +1,13 @@
+{
+  "dashboard": {
+    "title": "Főoldal",
+    "counter": "A számláló {{value}}-nél tart.",
+    "todayDate": "Ma {{dateValue}} van. Legyen szép a napod."
+  },
+  "users": {
+    "details": {
+      "enteredEmail": "A {{email}} e-mail címet adtad meg."
+    }
+  }
+
+}

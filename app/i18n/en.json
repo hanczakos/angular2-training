@@ -1,0 +1,12 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "counter": "The counter is at {{value}}.",
+    "todayDate": "Today is {{dateValue}}. Have a nice day."
+  },
+  "users": {
+    "details": {
+      "enteredEmail": "You entered the {{email}} email-address"
+    }
+  }
+}

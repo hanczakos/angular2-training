@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { HTTP_PROVIDERS }    from '@angular/http';
 import { RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
+import { TRANSLATE_PROVIDERS, TranslateService } from 'ng2-translate/ng2-translate';
+
 import { BackendService } from './shared/backend/backend.service';
 import { UserService } from './users/shared/user.service';
 import { UsersComponent } from './users/base/users.component';
@@ -16,7 +18,7 @@ import { ErrorMessagesService } from './shared/validation/error-messages.service
     templateUrl: 'app.component.html',
     styleUrls: ['base.css'],
     directives: [ ROUTER_DIRECTIVES, HeaderComponent, MenuComponent ],
-    providers: [ ROUTER_PROVIDERS, HTTP_PROVIDERS, BackendService, UserService, ValidationService, ErrorMessagesService ],
+    providers: [ ROUTER_PROVIDERS, HTTP_PROVIDERS, TRANSLATE_PROVIDERS, BackendService, UserService, ValidationService, ErrorMessagesService ],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -36,4 +38,16 @@ import { ErrorMessagesService } from './shared/validation/error-messages.service
     }
 ])
 
-export class AppComponent {}
+export class AppComponent {
+    constructor(translate: TranslateService) {
+        var userLang = navigator.language.split('-')[0]; // use navigator lang if available
+        userLang = /(hu|en)/gi.test(userLang) ? userLang : 'en';
+
+        // this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('en');
+
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use(userLang);
+
+    }
+}

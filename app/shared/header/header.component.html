@@ -2,5 +2,9 @@
     <div class="container spacing">
         <h1>User database</h1>
         <h3>Angular 2 training</h3>
+        <div class="btn-group">
+            <button class="btn btn-default btn-sm" (click)="setLang('hu')" [ngClass]="{'active': actLang=='hu'}">hu</button>
+            <button class="btn btn-default btn-sm" (click)="setLang('en')" [ngClass]="{'active': actLang=='en'}">en</button>
+        </div>
     </div>
 </header>
