@@ -1,6 +1,6 @@
 # Angular2 training with Typescript and Webpack.
 
-## Training draft
+## Training draft 
 
 https://drive.google.com/open?id=0B0TTQL0I-wDoaEdZQmVwemRJMHM
 
