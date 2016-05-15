@@ -2,7 +2,7 @@
 
 ## Training draft 
 
-https://drive.google.com/open?id=0B0TTQL0I-wDoaEdZQmVwemRJMHM
+https://drive.google.com/open?id=10DhDOwMJsRVa1QdhU9BImFx26TG_klv6hZGwHRbh2B4
 
 ## Installation
 
